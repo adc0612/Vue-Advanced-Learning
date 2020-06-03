@@ -1,28 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- 밑에 건 Camel Case 기법이고 Vue에서 Strongly recommend 하는 방법 (둘 다 되긴된다.) -->
+    <!-- <ToolBar></ToolBar> -->
+    <!-- 밑에 건 Kebab 기법이고 Essential recommend방식이지만 vsCode에서 편하게 사용하려고 이렇게 한다.  -->
+    <tool-bar></tool-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ToolBar from './components/ToolBar.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  components:{
+    ToolBar,
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body{
+  padding: 0;
+  margin: 0;
 }
 </style>
