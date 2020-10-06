@@ -4,7 +4,10 @@
 
 <script>
 export default {
-
+  creted(){
+    const userName = this.$route.params.id;
+    this.$store.dispatch('FETCH_USER', userName)
+  }
 }
 </script>
 

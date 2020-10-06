@@ -4,7 +4,7 @@ import NewsView from '../views/NewsView.vue';
 import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 // import ItemView from '../views/ItemView.vue';
-// import UserView from '../views/UserView.vue';
+import UserView from '../views/UserView.vue';
 
 Vue.use(VueRouter);
 
@@ -40,11 +40,12 @@ export const router = new VueRouter({
         //     //component: path로 지정해준 url경로로 갔을 때 보여줄 component
         //     component: ItemView,
         // },
-        // {
-        //     //path: url 주소
-        //     path: '/user',
-        //     //component: path로 지정해준 url경로로 갔을 때 보여줄 component
-        //     component: UserView,
-        // },
+        {
+            //path: url 주소
+            // '/'뒤에 ':'하고 인자를 넣어서 다른 userview를 표현
+            path: '/user/:id',
+            //component: path로 지정해준 url경로로 갔을 때 보여줄 component
+            component: UserView,
+        },
     ]
 });

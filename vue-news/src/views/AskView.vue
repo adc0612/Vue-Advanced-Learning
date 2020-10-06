@@ -1,21 +1,33 @@
 <template>
   <div>
-      <div v-for="item in ask" :key="item.title"> {{item.title}} </div>
+      <div v-for="item in askItems" :key="item.title"> 
+        <a :href="item.url">{{item.title}}</a>
+        <small>{{item.time_ago}} by {{item.user}}</small> 
+      </div>
   </div>
 </template>
 
 <script>
-import {fetchAskList} from '../api/index.js';
+// import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+
 export default {
-  data(){
-    return {
-      ask: []
-    }
+  computed:{
+    // #3: mapGetters이용해서 vuex에서 getters에서 정의한 function호출
+    ...mapGetters({
+      askItems: 'fetchedAsk',
+    })
+    // #2: mapState이용해서 vuex에 있는 state를 바로 접촉해서 이어준다.
+    // ...mapState({
+    //   fetchedAsk: state => state.ask;
+    // })
+    // #1: fuction으로 store.stat.ask를 return해주는 방식
+    // ask(){
+    //   return this.$store.state.ask;
+    // }
   },
   created(){
-    fetchAskList()
-    .then(response =>  this.ask = response.data )
-    .catch(error => console.log(error));
+    this.$store.dispatch('FETCH_ASK');
   }
 }
 </script>
