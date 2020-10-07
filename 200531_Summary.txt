@@ -21,3 +21,13 @@ router폴더를 만들어 index.js를 만들어 router에 대한 정보들을 �
 
 router폴더 안 index.js안에 route를 연결해 놓고 route마다 보여줄 component를 view폴더 안에 생성하고 연결해준다.
 App.vue 에 <router-view></router-view>태그를 추가하여 router화면을 띄워준다.
+
+api/index.js 에서 axios를 이용해 json파일을 가져온다.
+각 views안에있는 해당되는 vue에 api호출 후 뿌려준다.
+
+Vuex 설치
+store 폴더 만든 후 index.js 파일에 vuex내용 넣는다. 
+원래 각 vue에서 api호출을 따로 해줬는데 vuex를 통해 
+actions로 api호출
+mutations로 호출한 데이터를 state에 있는 객체에 담는다.
+그러고 state안에 있는 데이터를 각 vue에서 호춯한다.
