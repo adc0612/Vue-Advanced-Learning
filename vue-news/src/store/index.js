@@ -10,13 +10,17 @@ export const store = new Vuex.Store({
         news: [],
         jobs: [],
         ask: [],
-        user: {}
+        user: {},
+        item: []
     },
     getters: {
         //getters를 이용해 this.$store.state.ask처럼 복잡하게 접근해서 데이터 얻기 보다
         // 아래같은 함수 한번 호출로 편하게 가져올 수 있다.
         fetchedAsk(state){
             return state.ask;
+        },
+        fetchedItem(state){
+            return state.item;
         }
     },
     mutations,

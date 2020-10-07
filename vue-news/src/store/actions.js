@@ -1,4 +1,10 @@
-import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo } from "../api/index.js";
+import {
+    fetchNewsList,
+    fetchJobsList,
+    fetchAskList,
+    fetchUserInfo,
+    fetchItemInfo,
+} from "../api/index.js";
 
 export default {
     // context를 인자로 받아서 mutations function이름과 axios 호출 해서 받은 response를 commit한다.
@@ -26,6 +32,11 @@ export default {
     FETCH_USER({commit}, userName){
         fetchUserInfo(userName)
         .then(({data}) => commit('SET_USER', data))
+        .catch((error) => console.log(error));
+    },
+    FETCH_ITEM({commit}, itemId){
+        fetchItemInfo(itemId)
+        .then(({data}) => commit('SET_ITEM', data))
         .catch((error) => console.log(error));
     }
 }

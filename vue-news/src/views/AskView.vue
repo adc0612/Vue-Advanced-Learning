@@ -1,7 +1,8 @@
 <template>
   <div>
       <div v-for="item in askItems" :key="item.title"> 
-        <a :href="item.url">{{item.title}}</a>
+        <!-- <a :href="item.url">{{item.title}}</a> -->
+        <router-link :to="`/item/${item.id}`">{{item.title}}</router-link>
         <small>{{item.time_ago}} by {{item.user}}</small> 
       </div>
   </div>

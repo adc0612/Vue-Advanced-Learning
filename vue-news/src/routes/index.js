@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import NewsView from '../views/NewsView.vue';
 import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
-// import ItemView from '../views/ItemView.vue';
+import ItemView from '../views/ItemView.vue';
 import UserView from '../views/UserView.vue';
 
 Vue.use(VueRouter);
@@ -34,12 +34,12 @@ export const router = new VueRouter({
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: JobsView,
         },
-        // {
-        //     //path: url 주소
-        //     path: '/item',
-        //     //component: path로 지정해준 url경로로 갔을 때 보여줄 component
-        //     component: ItemView,
-        // },
+        {
+            //path: url 주소
+            path: '/item/:id',
+            //component: path로 지정해준 url경로로 갔을 때 보여줄 component
+            component: ItemView,
+        },
         {
             //path: url 주소
             // '/'뒤에 ':'하고 인자를 넣어서 다른 userview를 표현
