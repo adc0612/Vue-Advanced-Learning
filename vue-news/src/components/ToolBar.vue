@@ -1,10 +1,10 @@
 <template>
   <div class="header">
-      <router-link to="/news">news</router-link> |
-      <router-link to="/ask">ask</router-link> |
+      <router-link to="/news">news</router-link>
+      <i class="fas fa-grip-lines-vertical"></i> 
+      <router-link to="/ask">ask</router-link>
+      <i class="fas fa-grip-lines-vertical"></i>
       <router-link to="/jobs">jobs</router-link>
-      <router-link to="/item">item</router-link>
-      <router-link to="/user">user</router-link>
   </div>
 </template>
 
@@ -19,12 +19,18 @@ export default {
     color: #fff;
     background-color: #42b883;
     display: flex;
-    padding: 8px;
+    padding: 15px;
 }
 .header .router-link-exact-active{
     color: #35495e;
+    text-decoration: underline;
 }
-.header a{
+.header > a{
     color:#fff;
+    padding: 0 10px;
+    font-weight: 800;
+}
+.fa-grip-lines-vertical{
+    font-size: 20px;
 }
 </style>

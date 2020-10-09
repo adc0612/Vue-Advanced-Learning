@@ -19,18 +19,21 @@ export const router = new VueRouter({
         {
             //path: url 주소
             path: '/news',
+            name: 'news',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: NewsView,
         },
         {
             //path: url 주소
             path: '/ask',
+            name: 'ask',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: AskView,
         },
         {
             //path: url 주소
             path: '/jobs',
+            name: 'jobs',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: JobsView,
         },

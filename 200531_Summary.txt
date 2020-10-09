@@ -31,3 +31,9 @@ store 폴더 만든 후 index.js 파일에 vuex내용 넣는다.
 actions로 api호출
 mutations로 호출한 데이터를 state에 있는 객체에 담는다.
 그러고 state안에 있는 데이터를 각 vue에서 호춯한다.
+
+item view, userview 만들기
+routes/index.js
+routing정보 등록
+클릭되는 부분에 routerlink걸기
+api/index.js에서 axios통해 해당되는 id.json파일 들고오기
