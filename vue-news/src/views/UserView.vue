@@ -1,13 +1,22 @@
 <template>
   <div>
-    <p>name : {{userInfo.id}} </p>
+    <user-profile :info="userInfo">
+      <div slot="username">name : {{userInfo.id}}</div>
+      <template slot="time">created: {{userInfo.created}}</template>
+      <div slot="karma">karma: {{userInfo.karma}}</div>
+    </user-profile>
+    <!-- <p>name : {{userInfo.id}} </p>
     <p>karma : {{userInfo.karma}} </p>
-    <p>created : {{userInfo.created}} </p>
+    <p>created : {{userInfo.created}} </p> -->
   </div>
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue';
 export default {
+  components:{
+    UserProfile,
+  },
   computed: {
     userInfo(){
       return this.$store.state.user;

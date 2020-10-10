@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
         jobs: [],
         ask: [],
         user: {},
-        item: []
+        item: {}
     },
     getters: {
         //getters를 이용해 this.$store.state.ask처럼 복잡하게 접근해서 데이터 얻기 보다

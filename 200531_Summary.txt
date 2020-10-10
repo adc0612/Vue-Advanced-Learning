@@ -37,3 +37,17 @@ routes/index.js
 routing정보 등록
 클릭되는 부분에 routerlink걸기
 api/index.js에서 axios통해 해당되는 id.json파일 들고오기
+
+User상세정보를 따로빼서 UserProfile.vue component로 등록
+User상세정보를 가져오는 2가지 방법
+1.Userview.vue 에서
+created로 vuex에 있는 함수를 dispatch 후
+component인 UserProfile.vue에서 computed 속성으로 받는다
+
+2.Userview.vue 에서
+created로 vuex에 있는 함수를 dispatch 후
+computed속성으로 받고
+component인 UserProfile.vue으로 props로 내려준다.
+
+한 component를 여러개 views에서 쓸 때
+slot이용해서 상위컴포넌트마다 값을 따로 넣어줄수있음
