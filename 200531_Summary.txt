@@ -51,3 +51,5 @@ component인 UserProfile.vue으로 props로 내려준다.
 
 한 component를 여러개 views에서 쓸 때
 slot이용해서 상위컴포넌트마다 값을 따로 넣어줄수있음
+
+loading 때 부를 애니메이션 Spinner추가

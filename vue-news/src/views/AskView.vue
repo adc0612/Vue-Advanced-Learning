@@ -25,10 +25,11 @@
 // import { mapState } from 'vuex';
 // import { mapGetters } from 'vuex';
 import ListItem from '../components/ListItem.vue';
+import bus from '../utils/bus.js';
 export default {
    components: {
     ListItem,
-  }
+  },
   // computed:{
   //   // #3: mapGetters이용해서 vuex에서 getters에서 정의한 function호출
   //   ...mapGetters({
@@ -43,9 +44,20 @@ export default {
   //   //   return this.$store.state.ask;
   //   // }
   // },
-  // created(){
-  //   this.$store.dispatch('FETCH_ASK');
-  // }
+  created(){
+    bus.$emit('start:spinner');
+    // 일부러 timeout3초를 걸어서 spinner가 보이게 적용되어있음
+    setTimeout(() => {
+      this.$store.dispatch('FETCH_ASK')
+      .then(()=>{
+        console.log('fetched');
+        bus.$emit('end:spinner');
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+    },3000);
+  }
 }
 </script>
 

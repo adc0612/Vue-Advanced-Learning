@@ -22,6 +22,7 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
+import bus from '../utils/bus.js';
 export default {
   // data(){
   //   return{
@@ -37,7 +38,20 @@ export default {
     //   vm.users = response.data;
     // })
     // .catch(error => console.log(error))
-    // this.$store.dispatch('FETCH_NEWS');
+
+    // bus.js로 Spinner 이벤트를 상위컴포넌트인 App.vue로 넘기기 위해 emit함
+    bus.$emit('start:spinner');
+    // 일부러 timeout3초를 걸어서 spinner가 보이게 적용되어있음
+    setTimeout(() => {
+      this.$store.dispatch('FETCH_NEWS')
+      .then(()=>{
+        console.log('fetched');
+        bus.$emit('end:spinner');
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
+    },3000);
   },
 
   components: {

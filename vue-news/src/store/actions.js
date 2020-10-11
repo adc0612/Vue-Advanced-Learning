@@ -10,7 +10,10 @@ export default {
     // context를 인자로 받아서 mutations function이름과 axios 호출 해서 받은 response를 commit한다.
     FETCH_NEWS(context) {
         fetchNewsList()
-            .then((response) => context.commit('SET_NEWS', response.data))
+            .then((response) => {
+                context.commit('SET_NEWS', response.data);
+                return response;
+            })
             .catch((error) => console.log(error));
     },
     // context대신 바로 context안에 있는 commit을 {commit}으로 받아온다.

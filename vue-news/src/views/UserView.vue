@@ -1,13 +1,10 @@
 <template>
   <div>
     <user-profile :info="userInfo">
-      <div slot="username">name : {{userInfo.id}}</div>
-      <template slot="time">created: {{userInfo.created}}</template>
-      <div slot="karma">karma: {{userInfo.karma}}</div>
+      <div slot="username">{{userInfo.id}}</div>
+      <span slot="time">{{'Joined ' + userInfo.created}}, </span>
+      <span slot="karma">{{userInfo.karma}}</span>
     </user-profile>
-    <!-- <p>name : {{userInfo.id}} </p>
-    <p>karma : {{userInfo.karma}} </p>
-    <p>created : {{userInfo.created}} </p> -->
   </div>
 </template>
 
