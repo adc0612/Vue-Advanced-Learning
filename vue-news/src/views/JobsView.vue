@@ -35,6 +35,7 @@ export default {
   // },
   created() {
     bus.$emit('start:spinner');
+    // 일부러 timeout3초를 걸어서 spinner가 보이게 적용되어있음
     setTimeout(() => {
       this.$store.dispatch('FETCH_JOBS')
       .then(()=>{

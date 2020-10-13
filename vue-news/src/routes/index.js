@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import NewsView from '../views/NewsView.vue';
-import AskView from '../views/AskView.vue';
-import JobsView from '../views/JobsView.vue';
+// import NewsView from '../views/NewsView.vue';
+// import AskView from '../views/AskView.vue';
+// import JobsView from '../views/JobsView.vue';
 import ItemView from '../views/ItemView.vue';
 import UserView from '../views/UserView.vue';
+import createListView from '../views/createListView.js';
 
 Vue.use(VueRouter);
 
@@ -21,21 +22,24 @@ export const router = new VueRouter({
             path: '/news',
             name: 'news',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
-            component: NewsView,
+            // component: NewsView,
+            component: createListView('NewsView'),
         },
         {
             //path: url 주소
             path: '/ask',
             name: 'ask',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
-            component: AskView,
+            // component: AskView,
+            component: createListView('AskView'),
         },
         {
             //path: url 주소
             path: '/jobs',
             name: 'jobs',
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
-            component: JobsView,
+            // component: JobsView,
+            component: createListView('JobsView'),
         },
         {
             //path: url 주소

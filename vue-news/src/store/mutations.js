@@ -15,4 +15,7 @@ export default {
     SET_ITEM(state, itemData){
         state.item = itemData;
     },
+    SET_LIST(state, pageData){
+        state.list = pageData;
+    },
 }
