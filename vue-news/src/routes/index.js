@@ -5,6 +5,8 @@ import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 import ItemView from '../views/ItemView.vue';
 import UserView from '../views/UserView.vue';
+import bus from '../utils/bus.js';
+import {store} from '../store/index.js';
 // import createListView from '../views/createListView.js';
 
 Vue.use(VueRouter);
@@ -24,6 +26,23 @@ export const router = new VueRouter({
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: NewsView,
             // component: createListView('NewsView'), //High Order Component 이용시 정의
+            beforeEnter: (to, from, next) => {
+                bus.$emit('start:spinner');
+                // to (이동할 URL의 라우팅정보)
+                // from (현재 URL의 라우팅정보)
+                // next (function임)
+                // 이동하려면 next()를 꼭 호출해야함
+                // to.name에 현재 route 정보 들어있음
+                store.dispatch('FETCH_List', to.name)
+                .then(()=>{
+                    console.log('fetched');
+                    bus.$emit('end:spinner');
+                    next();
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
+            },
         },
         {
             //path: url 주소
@@ -32,6 +51,18 @@ export const router = new VueRouter({
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: AskView,
             // component: createListView('AskView'), //High Order Component 이용시 정의
+            beforeEnter: (to, from, next) => {
+                bus.$emit('start:spinner');
+                store.dispatch('FETCH_List', to.name)
+                .then(()=>{
+                    console.log('fetched');
+                    bus.$emit('end:spinner');
+                    next();
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
+            },
         },
         {
             //path: url 주소
@@ -40,6 +71,18 @@ export const router = new VueRouter({
             //component: path로 지정해준 url경로로 갔을 때 보여줄 component
             component: JobsView,
             // component: createListView('JobsView'), //High Order Component 이용시 정의
+            beforeEnter: (to, from, next) => {
+                bus.$emit('start:spinner');
+                store.dispatch('FETCH_List', to.name)
+                .then(()=>{
+                    console.log('fetched');
+                    bus.$emit('end:spinner');
+                    next();
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
+            },
         },
         {
             //path: url 주소
