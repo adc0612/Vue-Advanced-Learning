@@ -10,24 +10,46 @@ function fetchNewsList() {
     return axios.get(`${config.baseUrl}news/1.json`);
 }
 
-function fetchJobsList(){
-    return axios.get(`${config.baseUrl}jobs/1.json`);
+// aync로 변환 후 try catch로 예외처리
+async function fetchAskList(){
+    try {
+        const response = await axios.get(`${config.baseUrl}ask/1.json`);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function fetchAskList(){
-    return axios.get(`${config.baseUrl}ask/1.json`);
+async function fetchJobsList(){
+    try {
+        return await axios.get(`${config.baseUrl}jobs/1.json`);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function fetchUserInfo(userName){
-    return axios.get(`${config.baseUrl}user/${userName}.json`)
+async function fetchUserInfo(userName){
+    try {
+        return await axios.get(`${config.baseUrl}user/${userName}.json`);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function fetchItemInfo(itemId){
-    return axios.get(`${config.baseUrl}item/${itemId}.json`)
+async function fetchItemInfo(itemId){
+    try {
+        return await axios.get(`${config.baseUrl}item/${itemId}.json`);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function fetchList(pageName){
-    return axios.get(`${config.baseUrl}${pageName}/1.json`);
+async function fetchList(pageName){
+    try {
+        return await axios.get(`${config.baseUrl}${pageName}/1.json`);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export{
