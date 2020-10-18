@@ -1,0 +1,130 @@
+vue create vue-news
+vue create 명령어로 vue-news라는 프로젝트 생성
+vue create가 안 될때 
+npm install -g @vue/cli-service-global 로 vue cli 설치
+
+vue-router를 설치 해야한다.
+npm i vue-router --save
+router 설치
+
+router 설치 후 package.json 파일 가서 dependencies에 vue-router 추가 됐는지 확인
+vue-router는 보여지는 부분이니 dependencies안에 들어있다.
+
+router 설치 후 main.js 에
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+추가 하고 사용
+
+원래 main.js에 router에 대한 routes들을 등록해줘야 하지만
+routes로 넣을 정보가 많아지면 main.js에 router에 대한 내용이 많아지기 때문에
+router폴더를 만들어 index.js를 만들어 router에 대한 정보들을 넣어준 후 import한다.
+
+router폴더 안 index.js안에 route를 연결해 놓고 route마다 보여줄 component를 view폴더 안에 생성하고 연결해준다.
+App.vue 에 <router-view></router-view>태그를 추가하여 router화면을 띄워준다.
+
+api/index.js 에서 axios를 이용해 json파일을 가져온다.
+각 views안에있는 해당되는 vue에 api호출 후 뿌려준다.
+
+Vuex 설치
+store 폴더 만든 후 index.js 파일에 vuex내용 넣는다. 
+원래 각 vue에서 api호출을 따로 해줬는데 vuex를 통해 
+actions로 api호출
+mutations로 호출한 데이터를 state에 있는 객체에 담는다.
+그러고 state안에 있는 데이터를 각 vue에서 호춯한다.
+
+item view, userview 만들기
+routes/index.js
+routing정보 등록
+클릭되는 부분에 routerlink걸기
+api/index.js에서 axios통해 해당되는 id.json파일 들고오기
+
+User상세정보를 따로빼서 UserProfile.vue component로 등록
+User상세정보를 가져오는 2가지 방법
+1.Userview.vue 에서
+created로 vuex에 있는 함수를 dispatch 후
+component인 UserProfile.vue에서 computed 속성으로 받는다
+
+2.Userview.vue 에서
+created로 vuex에 있는 함수를 dispatch 후
+computed속성으로 받고
+component인 UserProfile.vue으로 props로 내려준다.
+
+한 component를 여러개 views에서 쓸 때
+slot이용해서 상위컴포넌트마다 값을 따로 넣어줄수있음
+
+loading 때 부를 애니메이션 Spinner추가
+
+*************component 재사용 하는 방법*************
+
+1. HighOrderComponent(HOC 추가)
+코드 재활용을 위한 High Order Component사용
+
+createListView.js에서
+해당 view 즉 (Ask, Jobs, News)따라 데이터를 보내주고
+ListView.vue에서는 들어오는 데이터만 뿌려줄 예정
+
+store/index.js
+list를 담아줄 list [] 선언
+
+api/index.js
+인자로 name을 넘겨받고 해당되는 name의 json파일을 불러온다.
+
+store/action.js
+vuex에서 넘겨주는 name마다 해당 json파일을 받을 수 있게 action 선언
+
+store/mutation.js
+넘어오는 json 데이터를 넣어주기위해 mutation SET_LIST 선언
+
+views./createListView.js에서
+createListView function을 만든 후 인자로 name을 받는다.
+들어오는 name에 따라 들어갈 component이름을 설정한다.
+created() 안에 action.js에 있는 FETCH_LIST(route name)을 넣어서 route 이름에 맞게 데이터를 호출한다.
+render(createElement)  createElement(ListView)를 return한다.
+
+ListView.vue에서는
+component로 ListItem.vue component로 등록 하고 div내에 선언한다.
+
+ListItem.vue에서는
+create()로 state.list에 있는 데이터를 가져와 뿌려준다.
+
+routes/index.js에서는
+createListView.js를 import해서 createListView Function을 선언한다.
+news, ask, jobs의 component들을 createListView('NewsView')등으로 바꿔준다.
+
+
+2.Mixin
+Mixin 생성
+
+JobsView, AskView, NewsView에 있는 created()부분이 중복되기 때문에
+Mixin으로 따로 재정해 줄 거다.
+
+mixins/ListMixin.js
+Created부분을 들고와서 export default안에 넣어준다.
+
+created()부분을 지워 준다음
+ListMixin을 import한다.
+mixins: [ListMixin]
+
+
+
+*********데이터 호출 시점****************
+[데이터 호출 시점]
+1. 라우터 내비게이션 가드
+	-특정 URL로 접근하기 전의 동작을 정의하는 속성(함수)
+BeforeEnter: (to,from,next) => {
+}
+to (이동할 URL의 라우팅정보)
+from (현재 URL의 라우팅정보)
+next (function임)
+이동하려면 next()를 꼭 호출해야함
+
+2. 컴포넌트 라이프 사이클 훅
+	-created: (컴포넌트가 생성)되자마자 호출되는 로직
+
+
+
+***********promise 기반은 async와 await로 바꿈******************
+sync와 await 장점: 직관적인 사고방식으로 가능
+
+promise 기반에 then, catch는 network요청이나 비동기 처리 요청 에러 예외 처리
+try, catch는 network, 비동기처리 예외나 자바스크립 문법등 모든 예외 처리 가능
