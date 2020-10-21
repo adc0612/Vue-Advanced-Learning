@@ -24,7 +24,7 @@
         <img src="./assets/logo.png" alt="Logo" width="100px">
       </item>
       <item>
-        <div style="color: blue; font-size:20px">아이템 4</div>
+        <div style="color: blue; font-size:20px;">아이템 4</div>
       </item>
     </ul>
   </div>

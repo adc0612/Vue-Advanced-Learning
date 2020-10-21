@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Render Function</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue의 인스턴스 영역 -->
+        <!-- <p> {{message}} </p> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message:'Hello Vue!!',
+            },
+            // template 속성 안에서 아래와 같이 표현하면 
+            // <div id="app"> </div>안에 정의한 tag들이 나옴
+            template:'<p>{{message}}</p>',
+            // 위 template은 render function으로 변환이 되면서 제작 된것 
+            // react는 html, css는 vue처럼 따로 쓰지 않고 render안에 구현
+            render: function (createElement) {
+                // return createElement('태그이름', '태그 속성', '하위 태그');
+                // return createElement('p', 'Hello Vue');
+                return createElement('p', this.message);
+            }
+        })
+    </script>
+</body>
+
+</html>
